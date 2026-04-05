@@ -1,4 +1,36 @@
+import { Metadata } from "next";
 import Image from "next/image";
+
+
+export const metadata: Metadata = {
+    title: "XYZ",
+    description: "About page",
+    keywords: ["About", "215Demo", "NextDemo", "215Next"],
+    authors: [{ name: "John Doe" }],
+    creator: "John Doe",
+    publisher: "John Doe",
+    openGraph: {
+        title: "About - 215Demo",
+        description: "About page",
+        type: "website",
+        url: "https://215demo.vercel.app/about",
+        siteName: "215Demo",
+        images: [
+            {
+                url: "https://215demo.vercel.app/og-image.png",
+                width: 1200,
+                height: 630,
+                alt: "About - 215Demo",
+            },
+        ],
+    },
+    twitter: {
+        card: "summary_large_image",
+        title: "About - 215Demo",
+        description: "About page",
+        images: ["https://215demo.vercel.app/og-image.png"],
+    },
+}
 
 export default function AboutPage() {
     return (
@@ -20,7 +52,7 @@ export default function AboutPage() {
                         This is the about page for our Next.js page!
                     </p>
                 </div>
-                
+
             </main>
         </div>
     );

@@ -15,6 +15,8 @@ const navLinks = [
 
 export default function Navbar() {
     const pathname = usePathname();
+
+    console.log(pathname)
     const [open, setOpen] = useState(false);
 
     return (
@@ -69,8 +71,8 @@ export default function Navbar() {
                             href={link.href}
                             onClick={() => setOpen(false)}
                             className={`text-sm ${pathname === link.href
-                                    ? "text-white"
-                                    : "text-white/50 hover:text-white"
+                                ? "text-white"
+                                : "text-white/50 hover:text-white"
                                 }`}
                         >
                             {link.name}

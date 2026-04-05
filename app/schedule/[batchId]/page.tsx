@@ -1,12 +1,36 @@
 import { batches } from "@/data/batchData"
 import { BatchData } from "@/types/batch";
 import BatchDisplay from "@/components/ui/BatchDetails";
+import { Metadata } from "next";
 
-// /batch/[batchId]/student/001
+type BatchSchedulePageProps = {
+    params: Promise<
+        {
+            batchId: string
+        }
+    >
+}
+
+export const generateMetadata = async (
+    { params }: BatchSchedulePageProps
+): Promise<Metadata> => {
+
+    const batchId = await params;
+    const batchName = batches.find(b => b.id === parseInt(batchId.batchId))?.name
+
+    return {
+        title: {
+            absolute: `${batchName ?? "Batch Not Found"}`
+        },
+        description: `${batchName ?? "Batch Not Found"} - 215Demo`,
+        keywords: ["Schedule", "215Demo", "NextDemo", "215Next"],
+        authors: [{ name: "John Doe" }],
+    }
+
+}
 
 export default async function BatchSchedulePage(
-    { params }:
-    { params: Promise<{ batchId: string }>}
+    { params }: BatchSchedulePageProps
 ) {
 
     const { batchId } = await params;
@@ -18,7 +42,7 @@ export default async function BatchSchedulePage(
 
     return (
         <div className="">
-            <BatchDisplay batch={batch}/>
+            <BatchDisplay batch={batch} />
         </div>
     )
 }
