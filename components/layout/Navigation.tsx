@@ -10,7 +10,9 @@ const navLinks = [
     { name: "About", href: "/about" },
     { name: "Contact Admin", href: "/contact/admin" },
     { name: "Contact Customer Sales", href: "/contact/customer-sales" },
-    { name: "Contact Queries", href: "/contact/queries" },
+    { name: "Batch API", href: "/api/batch" },
+    { name: "Batch", href: "/batch/215" },
+    { name: "Docs", href: "/docs/example" },
 ];
 
 export default function Navbar() {
