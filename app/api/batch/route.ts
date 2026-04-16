@@ -1,24 +1,21 @@
 import { NextRequest, NextResponse } from "next/server";
 import { BatchData, Timings } from "@/types/batch";
 import { batches } from "@/data/batchData";
+import { headers, cookies } from "next/headers";
 
-// export interface BatchData {
-//     id: number,
-//     name: string,
-//     currentTopic: string,
-//     timings: {
-//         day: string,
-//         time: string
-//     }[]
-// }
 
-// interface Timings {
-//     day: string;
-//     time: string;
-// }
+export async function GET(request: NextRequest) {
+    const reqHeaders = await headers();
+    const cookieStore = await cookies();
 
-export async function GET() {
-    return NextResponse.json({ batches });
+    cookieStore.set("page-limit", "5");
+    // return NextResponse.json({ batches });
+    return new Response("Hello!", {
+        headers: {
+            'Content-Type': 'text/plain',
+            // 'Set-Cookie': "theme=light;"
+        }
+    })
 }
 
 export async function POST(request: NextRequest) {
@@ -51,3 +48,38 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({ message: "Received a POST request!", createdResource: newBatch }, { status: 201 });
 }
+
+// export interface BatchData {
+//     id: number,
+//     name: string,
+//     currentTopic: string,
+//     timings: {
+//         day: string,
+//         time: string
+//     }[]
+// }
+
+// interface Timings {
+//     day: string;
+//     time: string;
+// }
+
+// const { searchParams } = request.nextUrl;
+//     const query = searchParams.get("query");
+
+//     const page = Number(searchParams.get("page")) || 1;
+//     const limit = Number(searchParams.get("limit")) || 10;
+
+//     const skip = (page - 1) * limit;
+//     const take = limit;
+
+//     const paginatedBatches = batches.slice(skip, skip + take);
+
+//     if (query) {
+//         const filteredBatches = batches.filter((batch) => batch.name.toLowerCase().includes(query.toLowerCase()));
+//         return NextResponse.json({ batches: filteredBatches });
+//     }
+
+// users 1000
+// GET /users -> 10 users (page 1)
+// GET /users?page=2&limit=20 -> 20 users (page 2)
