@@ -3,7 +3,6 @@ import { BatchData, Timings } from "@/types/batch";
 import { batches } from "@/data/batchData";
 import { headers, cookies } from "next/headers";
 
-
 export async function GET(request: NextRequest) {
     const reqHeaders = await headers();
     const cookieStore = await cookies();
