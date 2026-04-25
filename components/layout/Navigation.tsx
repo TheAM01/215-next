@@ -12,6 +12,7 @@ const navLinks = [
     { name: "Contact Customer Sales", href: "/contact/customer-sales" },
     { name: "Batch API", href: "/api/batch" },
     { name: "Batch", href: "/batch/215" },
+    { name: "New Batch", href: "/batch/new" },
     { name: "Docs", href: "/docs/example" },
 ];
 

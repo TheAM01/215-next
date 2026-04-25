@@ -17,9 +17,16 @@ export async function GET(request: NextRequest) {
     })
 }
 
+function wait(time: number) {
+    return new Promise((resolve) => setTimeout(resolve, time));
+}
+
 export async function POST(request: NextRequest) {
 
+    await wait(5000);
+
     const body = await request.json();
+    console.log(body)
     const { name, currentTopic, timings } = body;
 
     if (!name || !currentTopic || !timings) {
