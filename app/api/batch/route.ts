@@ -23,7 +23,7 @@ function wait(time: number) {
 
 export async function POST(request: NextRequest) {
 
-    await wait(5000);
+    // await wait(5000);
 
     const body = await request.json();
     console.log(body)
@@ -37,14 +37,14 @@ export async function POST(request: NextRequest) {
         return NextResponse.json({ message: "Timings must be an array" }, { status: 400 });
     }
 
-    timings.forEach((timing: Timings) => {
+    for (const timing of timings) {
         if (!timing.day || !timing.time) {
             return NextResponse.json({ message: "Invalid timing format" }, { status: 400 });
         }
-    })
+    }
 
     const newBatch: BatchData = {
-        id: batches[batches.length - 1].id + 1,
+        id: body.id || (batches.length > 0 ? batches[batches.length - 1].id + 1 : 1),
         name,
         currentTopic,
         timings
@@ -52,7 +52,7 @@ export async function POST(request: NextRequest) {
 
     batches.push(newBatch);
 
-    return NextResponse.json({ message: "Received a POST request!", createdResource: newBatch }, { status: 201 });
+    return NextResponse.json({ message: "Batch created successfully!", createdResource: newBatch }, { status: 201 });
 }
 
 // export interface BatchData {
